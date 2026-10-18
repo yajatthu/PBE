@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    container_name: pbe-postgres
+    environment:
+      POSTGRES_USER: pbe
+      POSTGRES_PASSWORD: pbe_dev
+      POSTGRES_DB: pbe
+    ports:
+      - "5433:5432"
+    volumes:
+      - pbe_pgdata:/var/lib/postgresql/data
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/001-init.sql:ro
+
+  redis:
+    image: redis:7-alpine
+    container_name: pbe-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - pbe_redis:/data
+
+volumes:
+  pbe_pgdata:
+  pbe_redis:

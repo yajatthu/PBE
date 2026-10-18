@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1110">
+<title>PBE — Capability Workspace v0.9</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1110;--panel:#111a17;--panel2:#16221d;--line:#293b32;--text:#edf6f0;--muted:#9aafa4;--green:#7cf0a6;--blue:#9bc3ff;--amber:#ffd27a;--red:#ff9b9b;--radius:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 76% -12%,#1c3a2b 0,transparent 40%),radial-gradient(ellipse at 0% 45%,#14251f 0,transparent 34%),var(--bg);color:var(--text);font:14px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+button,textarea,input,select{font:inherit}button{border:1px solid #47785a;background:var(--green);color:#07120b;font-weight:800;border-radius:10px;padding:11px 15px;cursor:pointer;transition:transform .16s,border-color .16s,background .16s}button:hover{transform:translateY(-1px);filter:brightness(1.06)}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:3px}button:disabled{opacity:.45;cursor:not-allowed;transform:none}.secondary{background:#17241e;color:var(--text);border-color:var(--line)}.quiet{background:transparent;color:var(--muted);border-color:var(--line)}.wrap{max-width:1380px;margin:auto;padding:22px 26px 34px}.top{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;border-bottom:1px solid #26382f;padding:3px 0 18px}.brand{font-size:11px;letter-spacing:.19em;font-weight:900;color:var(--green)}.brandline{display:flex;align-items:center;gap:12px}.mark{display:grid;place-items:center;width:34px;height:34px;border:1px solid #3d694c;border-radius:10px;background:#14271c;color:var(--green);font-weight:950;font-size:15px}.tag{border:1px solid #3e654b;background:#13251a;color:var(--green);border-radius:999px;padding:6px 11px;font-size:10px;letter-spacing:.11em;font-weight:900}.hero{padding:34px 0 24px;display:grid;grid-template-columns:1.4fr .6fr;align-items:end;gap:26px}.kicker{font-size:11px;letter-spacing:.15em;color:var(--blue);font-weight:800}.hero h1{font-size:clamp(35px,5vw,62px);line-height:.99;letter-spacing:-.055em;margin:12px 0 15px;max-width:850px}.hero h1 span{color:var(--green)}.hero p{max-width:770px;color:var(--muted);font-size:16px;margin:0}.hero-note{border:1px solid var(--line);border-radius:14px;padding:16px;background:linear-gradient(145deg,#15231b,#101714)}.hero-note strong{display:block;color:var(--green);font-size:12px;letter-spacing:.08em;margin-bottom:6px}.hero-note p{font-size:12px}.pipeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:8px 0 20px}.step{position:relative;border:1px solid var(--line);background:#101815d9;border-radius:12px;padding:13px;min-height:82px}.step .n{font-size:10px;color:var(--green);font-weight:900;letter-spacing:.1em}.step strong{display:block;font-size:12px;margin:3px 0}.step small{display:block;color:var(--muted);font-size:11px}.step.active{border-color:#4b8b60;background:#14251b;box-shadow:0 0 0 1px #4b8b6022 inset}.layout{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(330px,.84fr);gap:15px;align-items:start}.column{display:grid;gap:15px;min-width:0}.panel{min-width:0;border:1px solid var(--line);border-radius:var(--radius);padding:19px;background:linear-gradient(155deg,#141f1a,#101714 78%);box-shadow:0 18px 45px #0002}.panelhead{display:flex;justify-content:space-between;gap:12px;align-items:start;margin-bottom:15px}.panel h2{font-size:16px;margin:0 0 3px;letter-spacing:-.015em}.sub{font-size:12px;color:var(--muted);margin:0}.eyebrow{font-size:10px;color:var(--blue);letter-spacing:.13em;font-weight:850}.fieldlabel{display:block;font-size:12px;font-weight:800;color:#dcebe1;margin:17px 0 8px}.service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.service{display:flex;align-items:center;gap:9px;text-align:left;background:#0d1511;color:var(--text);border:1px solid #293b31;border-radius:11px;padding:11px;min-height:58px;font-size:12px}.service .dot{width:8px;height:8px;flex:none;border-radius:50%;background:#52645a}.service.on{border-color:#4e8b60;background:#14251a}.service.on .dot{background:var(--green);box-shadow:0 0 12px #7cf0a655}.service strong{display:block}.service small{display:block;color:var(--muted);font-size:10px;font-weight:500}.fieldrow{display:flex;justify-content:space-between;align-items:center;gap:10px}.fieldrow .sub{font-size:11px}textarea,input,select{width:100%;background:#0b1210;color:var(--text);border:1px solid #30463a;border-radius:10px;padding:12px;outline:none}textarea{min-height:108px;resize:vertical}textarea:focus,input:focus,select:focus{border-color:var(--green)}.presets{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.preset{padding:7px 9px;font-size:10px;border-radius:8px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}.status{min-height:22px;font-size:12px;color:var(--green);margin-top:10px}.status.warn{color:var(--amber)}.status.error{color:var(--red)}.divider{height:1px;background:var(--line);margin:17px 0}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:13px 0}.metric{background:#0b1310;border:1px solid var(--line);border-radius:11px;padding:12px;min-width:0}.metric b{display:block;font-size:21px;line-height:1.25;letter-spacing:-.03em}.metric span{display:block;color:var(--muted);font-size:10px;margin-top:5px}.trace{display:grid;gap:11px}.event{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}.event .node{display:grid;place-items:center;width:27px;height:27px;border-radius:8px;background:#20362a;color:var(--green);font-weight:900;font-size:11px;border:1px solid #345943}.event strong{display:block;font-size:12px}.event p{margin:2px 0 0;color:var(--muted);font-size:11px}.event time{display:block;color:#71877a;font-size:10px}.empty{padding:18px;border:1px dashed #34473c;border-radius:11px;color:var(--muted);font-size:12px}.plan{margin-top:15px;border:1px solid var(--line);border-radius:12px;overflow:hidden}.planhead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;background:#18251e}.pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 8px;color:var(--muted);font-size:9px;font-weight:850;letter-spacing:.06em}.pill.green{color:var(--green);border-color:#3d694b}.pill.blue{color:var(--blue);border-color:#405b7c}.planrow{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:start;padding:12px 14px;border-top:1px solid var(--line)}.num{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:#20362a;color:var(--green);font-weight:900;font-size:11px}.planrow strong{font-size:12px;display:block}.planrow p{margin:3px 0 0;color:var(--muted);font-size:11px}.architecture{display:grid;grid-template-columns:1fr 20px 1fr;gap:8px;align-items:stretch}.archbox{padding:12px;border:1px solid var(--line);border-radius:11px;background:#0d1511;min-width:0}.archbox strong{font-size:11px;display:block}.archbox small{color:var(--muted);font-size:10px;display:block;margin-top:4px}.archbox .state{font-size:9px;color:var(--green);font-weight:900;letter-spacing:.07em;margin-top:10px}.arrow{display:grid;place-items:center;color:var(--green);font-size:18px}.wide{grid-column:1/-1}.capability{border:1px solid #3c6548;background:linear-gradient(140deg,#14271b,#101813);padding:15px;border-radius:12px;margin-top:10px}.capability h3{font-size:15px;margin:0 0 4px}.capability p{font-size:11px;color:var(--muted);margin:0 0 12px}.modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.module{padding:9px;border:1px solid #2b4434;background:#0d1710;border-radius:9px;font-size:11px}.module:before{content:"◇";color:var(--green);margin-right:7px}.risk{border:1px solid #5e4a2a;background:#201a10;border-radius:11px;padding:12px;margin-top:12px;font-size:11px;color:#d9c49a}.risk strong{color:var(--amber)}.footer{border-top:1px solid #26382f;margin-top:22px;padding:16px 0 0;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:#84978d;font-size:10px}.footer strong{color:#c3d5c9}.hidden{display:none!important}.micro{font-size:10px;color:var(--muted)}.successbox{border:1px solid #3e694a;background:#112117;border-radius:11px;padding:12px;margin-top:12px}.successbox strong{font-size:12px;color:var(--green)}.successbox p{font-size:11px;color:var(--muted);margin:4px 0 0}.topright{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+@media(max-width:920px){.hero{grid-template-columns:1fr}.hero-note{max-width:none}.layout{grid-template-columns:1fr}.pipeline{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.wrap{padding:14px}.pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}.pipeline .step:last-child{grid-column:span 2}.service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.metric{padding:9px}.metric b{font-size:17px}.planrow{grid-template-columns:26px 1fr}.planrow .pill{grid-column:2;justify-self:start}.architecture{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.modules{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brandline"><div class="mark">P</div><div class="brand">POLYMORPHIC BUSINESS ENGINE</div></div>
+  <div class="topright"><span class="tag">v0.9</span><button class="quiet" id="resetTop" type="button">Reset workspace</button></div>
+</header>
+<section class="hero">
+  <div><div class="kicker">OBSERVATION → CAPABILITY → CODE</div><h1>Stop buying disconnected tools.<br><span>Build the capability.</span></h1><p>PBE starts with a business outcome—not a list of apps. It maps the capability required, coordinates authorised tools where available, and specifies what could be engineered natively inside PBE.</p></div>
+  <aside class="hero-note"><strong>THE LONG-TERM THESIS</strong><p>Software becomes a capability the business can shape and own—not merely another subscription to manage. Replacement is earned through verified coverage, reliability, security, and total-cost evidence.</p></aside>
+</section>
+<section class="pipeline" aria-label="PBE capability lifecycle">
+  <div class="step active" data-stage="observe"><span class="n">01 / OBSERVE</span><strong>Capture intent</strong><small>Business objective and constraints</small></div>
+  <div class="step" data-stage="reason"><span class="n">02 / REASON</span><strong>Cognitive Arbiter</strong><small>Map capabilities and risks</small></div>
+  <div class="step" data-stage="orchestrate"><span class="n">03 / ORCHESTRATE</span><strong>Tool orchestration</strong><small>Use authorised integrations</small></div>
+  <div class="step" data-stage="engineer"><span class="n">04 / ENGINEER</span><strong>Engineer Agent</strong><small>Specify native modules</small></div>
+  <div class="step" data-stage="validate"><span class="n">05 / VALIDATE</span><strong>Safety boundary</strong><small>Test, review, approve</small></div>
+</section>
+<div class="layout">
+  <main class="column">
+    <section class="panel">
+      <div class="panelhead"><div><div class="eyebrow">01 / OBJECTIVE INPUT</div><h2>Capability Replacement Desk</h2><p class="sub">Describe the business result. PBE works backward to the capabilities needed.</p></div><span class="pill">OUTCOME-FIRST</span></div>
+      <div class="fieldrow"><label class="fieldlabel" for="objective" style="margin-top:0">Business objective</label><span class="sub">Be specific about the outcome</span></div>
+      <textarea id="objective" maxlength="1800">Create a consistent social campaign, organize its assets, coordinate approvals, and track performance in one workspace so the business can reduce its dependence on disconnected subscriptions.</textarea>
+      <div class="presets" aria-label="Example objectives">
+        <button type="button" class="secondary preset" data-preset="campaign">Campaign operations</button>
+        <button type="button" class="secondary preset" data-preset="knowledge">Company knowledge hub</button>
+        <button type="button" class="secondary preset" data-preset="sales">Sales follow-up system</button>
+      </div>
+      <label class="fieldlabel">Relevant services / capability sources</label>
+      <div class="service-grid" id="services"></div>
+      <p class="micro">Choose services relevant to the objective. A service selection here is a planning input; live account authorisation is performed through the deployed PBE backend.</p>
+      <div class="actions"><button id="analyze" type="button">Analyse objective <span aria-hidden="true">↗</span></button><button class="secondary" id="clear" type="button">Clear selection</button></div>
+      <div class="status" id="status" role="status" aria-live="polite">Ready. Set the objective and analyse the required capabilities.</div>
+      <div id="plan" class="hidden"></div>
+    </section>
+    <section class="panel">
+      <div class="panelhead"><div><div class="eyebrow">02 / REASONING MODEL</div><h2>How PBE reasons about the request</h2><p class="sub">The architecture separates planning, external actions, native engineering, and release authority.</p></div><span class="pill blue">CONTROLLED PIPELINE</span></div>
+      <div class="architecture">
+        <div class="archbox"><strong>Objective + business context</strong><small>Intent, constraints, connected tools, current capabilities</small><div class="state">INPUT</div></div><div class="arrow">→</div><div class="archbox"><strong>Cognitive Arbiter</strong><small>Prioritises work, resolves routes, applies policy gates</small><div class="state">DECISION</div></div>
+        <div class="archbox"><strong>OpenRouter orchestration</strong><small>Model routing for planning when configured</small><div class="state">REASONING LAYER</div></div><div class="arrow">→</div><div class="archbox"><strong>Engineer Agent</strong><small>Capability specification and staged implementation</small><div class="state">BUILD PATH</div></div>
+        <div class="archbox wide"><strong>Sandbox → Validation → Human approval → Controlled release</strong><small>Generated code must pass checks and receive the required approval. A proposal is not the same as a deployed, production-grade replacement.</small><div class="state">SAFETY BOUNDARY</div></div>
+      </div>
+    </section>
+  </main>
+  <aside class="column">
+    <section class="panel">
+      <div class="panelhead"><div><div class="eyebrow">03 / LIVE SESSION TRACE</div><h2>Capability state</h2><p class="sub">The current interactive walkthrough state.</p></div><span class="pill green" id="statePill">READY</span></div>
+      <div class="metrics"><div class="metric"><b id="mSteps">0</b><span>Plan steps</span></div><div class="metric"><b id="mSources">3</b><span>Selected sources</span></div><div class="metric"><b id="mModules">0</b><span>Modules mapped</span></div></div>
+      <div class="trace" id="trace"><div class="event"><div class="node">0</div><div><time>AWAITING INPUT</time><strong>Workspace initialised</strong><p>Enter an objective to begin capability mapping.</p></div></div></div>
+    </section>
+    <section class="panel">
+      <div class="panelhead"><div><div class="eyebrow">04 / NATIVE ENGINEERING</div><h2>Native capability proposal</h2><p class="sub">A candidate blueprint—not a claim of completed software replacement.</p></div><span class="pill" id="moduleStatus">NOT MAPPED</span></div>
+      <div class="capability" id="capability"><h3>Business Capability Workspace</h3><p>Analyse an objective to produce a tailored capability blueprint.</p><div class="modules"><div class="module">Capability map</div><div class="module">Workflow specification</div><div class="module">Validation plan</div><div class="module">Governance controls</div></div></div>
+      <div class="risk"><strong>Replacement discipline</strong><br>Do not cancel an existing subscription based on this proposal alone. Validate feature coverage, data migration, access control, reliability, support, and total cost first.</div>
+      <div class="actions"><button class="secondary" id="buildSpec" type="button" disabled>Generate capability spec</button><button class="secondary" id="downloadSpec" type="button" disabled>Export JSON</button></div>
+      <div id="specStatus" class="status" aria-live="polite"></div>
+    </section>
+    <section class="panel">
+      <div class="panelhead"><div><div class="eyebrow">05 / INVESTMENT THESIS</div><h2>From subscriptions to capabilities</h2><p class="sub">The value proposition is a path, not a blanket replacement promise.</p></div></div>
+      <div class="trace">
+        <div class="event"><div class="node">A</div><div><strong>Discover duplicated work</strong><p>Find fragmented workflows and overlapping tools.</p></div></div>
+        <div class="event"><div class="node">B</div><div><strong>Prioritise the right capability</strong><p>Start with a narrow, measurable workflow and explicit acceptance criteria.</p></div></div>
+        <div class="event"><div class="node">C</div><div><strong>Engineer and validate</strong><p>Build in stages, benchmark against the existing process, and retain rollback paths.</p></div></div>
+        <div class="event"><div class="node">D</div><div><strong>Replace only when proven</strong><p>Expand native coverage when quality, security, and economics justify it.</p></div></div>
+      </div>
+    </section>
+  </aside>
+</div>
+<footer class="footer"><span><strong>PBE v0.9</strong> · Capability workspace</span><span>Standalone browser workspace · Live provider calls are not made by this file</span></footer>
+</div>
+<script>
+"use strict";
+const catalog=[
+ {name:"Canva",desc:"Design assets",kind:"Creative"},
+ {name:"Figma",desc:"Interface design",kind:"Creative"},
+ {name:"Notion",desc:"Knowledge base",kind:"Knowledge"},
+ {name:"Google Sheets",desc:"Structured data",kind:"Data"},
+ {name:"Gmail",desc:"Communication",kind:"Communication"},
+ {name:"Slack",desc:"Team coordination",kind:"Communication"},
+ {name:"Google Docs",desc:"Documents",kind:"Knowledge"},
+ {name:"CRM / Sales",desc:"Customer pipeline",kind:"Operations"},
+ {name:"Analytics",desc:"Performance signals",kind:"Data"}
+];
+const presets={
+ campaign:{objective:"Create a consistent social campaign, organize its assets, coordinate approvals, and track performance in one workspace so the business can reduce its dependence on disconnected subscriptions.",services:["Canva","Notion","Google Sheets","Slack","Analytics"]},
+ knowledge:{objective:"Create a trusted company knowledge hub that collects approved documents, makes information searchable, tracks ownership, and keeps policies current.",services:["Notion","Google Docs","Google Sheets","Slack"]},
+ sales:{objective:"Create a sales follow-up system that tracks leads, assigns owners, reminds the team about next steps, and reports conversion progress.",services:["CRM / Sales","Gmail","Google Sheets","Slack","Analytics"]}
+};
+let selected=new Set(["Canva","Notion","Google Sheets"]);
+let session={objective:"",steps:[],modules:[],proposal:null,approved:false};
+const $=id=>document.getElementById(id);
+function safeText(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function renderServices(){
+ const root=$("services");root.replaceChildren();
+ catalog.forEach(item=>{
+  const b=document.createElement("button");b.type="button";b.className="service"+(selected.has(item.name)?" on":"");
+  b.setAttribute("aria-pressed",String(selected.has(item.name)));
+  b.innerHTML='<span class="dot" aria-hidden="true"></span><span><strong>'+safeText(item.name)+'</strong><small>'+safeText(item.desc)+'</small></span>';
+  b.addEventListener("click",()=>{selected.has(item.name)?selected.delete(item.name):selected.add(item.name);renderServices();$("mSources").textContent=String(selected.size);});
+  root.appendChild(b);
+ });
+ $("mSources").textContent=String(selected.size);
+}
+function setStatus(message,kind=""){const el=$("status");el.textContent=message;el.className="status"+(kind?" "+kind:"");}
+function addTrace(title,detail,number){
+ const e=document.createElement("div");e.className="event";
+ e.innerHTML='<div class="node">'+safeText(number)+'</div><div><time>'+new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})+'</time><strong>'+safeText(title)+'</strong><p>'+safeText(detail)+'</p></div>';
+ $("trace").prepend(e);
+}
+function deriveModules(objective,services){
+ const t=objective.toLowerCase(),mods=[];
+ if(/campaign|social|content|brand|asset|design|creative/.test(t)){mods.push("Asset and content library","Brand rules and reusable templates","Campaign calendar and approvals","Performance reporting");}
+ if(/knowledge|document|policy|search|wiki|information|onboard/.test(t)){mods.push("Knowledge ingestion and indexing","Search and source attribution","Document ownership and review","Access policies and audit history");}
+ if(/sales|lead|customer|crm|follow.?up|pipeline|conversion/.test(t)){mods.push("Lead and account workspace","Follow-up queue and reminders","Pipeline stage management","Conversion reporting");}
+ if(/approval|review|sign.?off/.test(t))mods.push("Approval and review workflow");
+ if(/track|report|analytics|performance|metric/.test(t))mods.push("Metrics and reporting layer");
+ if(/email|communicat|message|slack|notify/.test(t))mods.push("Communication and notification layer");
+ if(/data|spreadsheet|sheet|record|database/.test(t))mods.push("Structured data model and import/export");
+ if(mods.length===0)mods.push("Objective-specific workspace","Workflow and task orchestration","Data model and permissions","Monitoring and reporting");
+ if(services.includes("Canva")||services.includes("Figma"))mods.push("Creative asset integration boundary");
+ if(services.includes("Gmail")||services.includes("Slack"))mods.push("Communication integration boundary");
+ if(services.includes("Notion")||services.includes("Google Docs"))mods.push("Knowledge and document integration boundary");
+ return [...new Set(mods)].slice(0,8);
+}
+function buildSteps(objective,services,modules){
+ const serviceText=services.length?services.join(", "):"No external service selected";
+ return [
+  ["Interpret the objective","Extract the desired outcome, operating constraints, and success criteria."],
+  ["Map the capability gap","Identify required workflows, data, permissions, and reporting."],
+  ["Inspect integration options","Consider the selected sources: "+serviceText+". Live availability must be checked by the deployed backend."],
+  ["Draft a native capability blueprint","Map "+modules.length+" candidate module(s) for an engineer to scope and implement."],
+  ["Define validation and approval gates","Specify acceptance tests, data/security checks, human review, and rollback requirements."]
+ ];
+}
+function renderPlan(steps){
+ const root=$("plan");root.classList.remove("hidden");
+ root.innerHTML='<div class="plan"><div class="planhead"><div><strong>Capability execution plan</strong><div class="micro">Review the proposed route before proceeding.</div></div><span class="pill green">REVIEW REQUIRED</span></div>'+
+ steps.map((s,i)=>'<div class="planrow"><span class="num">'+(i+1)+'</span><div><strong>'+safeText(s[0])+'</strong><p>'+safeText(s[1])+'</p></div><span class="pill">'+(i===4?"GOVERNANCE":"PLAN")+'</span></div>').join("")+
+ '<div class="planrow"><span class="num">✓</span><div><strong>Human decision gate</strong><p>Confirm the scope before exporting the capability specification. This standalone preview does not execute external actions or deploy code.</p></div><span class="pill green">REQUIRED</span></div></div>';
+}
+function analyse(){
+ const objective=$("objective").value.trim();
+ if(!objective){setStatus("Enter a business objective before analysis.","error");$("objective").focus();return;}
+ if(objective.length>1800){setStatus("Keep the objective under 1,800 characters.","error");return;}
+ const services=[...selected],modules=deriveModules(objective,services),steps=buildSteps(objective,services,modules);
+ session={objective,steps,modules,proposal:null,approved:false,services};
+ $("mSteps").textContent=String(steps.length);$("mModules").textContent=String(modules.length);
+ $("statePill").textContent="PLAN READY";$("moduleStatus").textContent="BLUEPRINT READY";
+ document.querySelectorAll("[data-stage]").forEach((el,i)=>el.classList.toggle("active",i<2));
+ renderPlan(steps);renderCapability(objective,modules);
+ $("buildSpec").disabled=false;$("downloadSpec").disabled=true;$("specStatus").textContent="";
+ setStatus("Capability map prepared. Review the plan, then generate a structured engineering specification.");
+ $("trace").replaceChildren();
+ addTrace("Objective captured","PBE has a defined outcome to reason about.",1);
+ addTrace("Capability gap mapped",modules.length+" candidate modules identified from the objective and selected sources.",2);
+ addTrace("Integration boundaries identified","Provider availability and account permissions require the deployed integration layer.",3);
+ addTrace("Validation gates defined","Testing, security review, human approval, and rollback remain required.",4);
+ document.querySelector("#plan").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"nearest"});
+}
+function renderCapability(objective,modules){
+ const title=objective.toLowerCase().includes("sales")||objective.toLowerCase().includes("lead")?"Sales Operations Workspace":objective.toLowerCase().includes("knowledge")||objective.toLowerCase().includes("policy")?"Knowledge Operations Hub":objective.toLowerCase().includes("campaign")||objective.toLowerCase().includes("social")?"Campaign Operations Workspace":"Business Capability Workspace";
+ $("capability").innerHTML='<h3>'+safeText(title)+'</h3><p>Candidate scope derived from the current objective. Modules are proposed for engineering review; they are not built or deployed by this preview.</p><div class="modules">'+modules.map(m=>'<div class="module">'+safeText(m)+'</div>').join("")+'</div>';
+}
+function makeSpec(){
+ if(!session.objective){setStatus("Analyse an objective first.","error");return;}
+ session.approved=true;
+ session.proposal={
+  schema_version:"pbe.capability-spec.v0.9",
+  product:"Polymorphic Business Engine",
+  version:"0.9-standalone-preview",
+  generated_at:new Date().toISOString(),
+  status:"PROPOSED_NOT_IMPLEMENTED",
+  objective:session.objective,
+  selected_sources:session.services,
+  reasoning_pipeline:["objective_capture","capability_gap_mapping","integration_boundary_review","native_blueprint","validation_and_human_approval"],
+  candidate_modules:session.modules.map((name,i)=>({id:"cap-"+String(i+1).padStart(2,"0"),name,implementation_status:"PROPOSED"})),
+  acceptance_gates:[
+   "Define measurable functional acceptance criteria",
+   "Review tenant isolation and least-privilege access",
+   "Validate data import/export and migration integrity",
+   "Run unit, integration, security, and failure-path tests",
+   "Require authorised human approval before release",
+   "Document monitoring, rollback, support, and total cost"
+  ],
+  external_actions_executed:false,
+  deployment_performed:false,
+  notes:"This specification is produced by the standalone browser workspace. It is a planning artifact, not evidence of live provider access, generated production code, or deployment."
+ };
+ $("downloadSpec").disabled=false;$("statePill").textContent="SPEC READY";$("moduleStatus").textContent="SPEC EXPORTED";
+ document.querySelectorAll("[data-stage]").forEach(el=>el.classList.add("active"));
+ addTrace("Structured capability spec prepared","Exportable JSON contains proposed modules and explicit acceptance gates.",5);
+ $("specStatus").textContent="Specification generated locally. No external API was called and no code was deployed.";
+ $("specStatus").className="status warn";
+ setStatus("Engineering specification is ready for review and export.");
+}
+function downloadSpec(){
+ if(!session.proposal)return;
+ const blob=new Blob([JSON.stringify(session.proposal,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download="pbe-capability-spec-v0.9.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+ $("specStatus").textContent="JSON export prepared in your browser.";
+}
+function applyPreset(name){
+ const p=presets[name];if(!p)return;$("objective").value=p.objective;selected=new Set(p.services);renderServices();setStatus("Example objective loaded. Analyse it to map the capability.");
+}
+function reset(){
+ selected=new Set(["Canva","Notion","Google Sheets"]);session={objective:"",steps:[],modules:[],proposal:null,approved:false};
+ $("objective").value=presets.campaign.objective;$("plan").classList.add("hidden");$("plan").replaceChildren();
+ $("mSteps").textContent="0";$("mModules").textContent="0";$("mSources").textContent=String(selected.size);
+ $("statePill").textContent="READY";$("moduleStatus").textContent="NOT MAPPED";
+ $("capability").innerHTML='<h3>Business Capability Workspace</h3><p>Analyse an objective to produce a tailored capability blueprint.</p><div class="modules"><div class="module">Capability map</div><div class="module">Workflow specification</div><div class="module">Validation plan</div><div class="module">Governance controls</div></div>';
+ $("buildSpec").disabled=true;$("downloadSpec").disabled=true;$("specStatus").textContent="";
+ $("trace").innerHTML='<div class="event"><div class="node">0</div><div><time>AWAITING INPUT</time><strong>Workspace initialised</strong><p>Enter an objective to begin capability mapping.</p></div></div>';
+ document.querySelectorAll("[data-stage]").forEach((el,i)=>el.classList.toggle("active",i===0));
+ setStatus("Ready. Set the objective and analyse the required capabilities.");renderServices();
+}
+document.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>applyPreset(b.dataset.preset)));
+$("analyze").addEventListener("click",analyse);$("clear").addEventListener("click",()=>{selected.clear();renderServices();setStatus("Service selection cleared. The objective can still be analysed.")});
+$("resetTop").addEventListener("click",reset);$("buildSpec").addEventListener("click",makeSpec);$("downloadSpec").addEventListener("click",downloadSpec);
+renderServices();
+</script>
+</body></html>
